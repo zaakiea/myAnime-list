@@ -22,6 +22,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.modul2_kel25.ui.theme.Modul2_Kel25Theme
+import androidx.navigation.NavType // <- TAMBAHKAN IMPORT INI
+import androidx.navigation.navArgument
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,12 +83,25 @@ fun AnimeApp() {
             startDestination = Screen.Anime.route,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable("anime") {
-                AnimeListScreen()
+            composable(Screen.Anime.route) {
+                // Teruskan navController ke AnimeListScreen
+                AnimeListScreen(navController = navController)
             }
             composable(Screen.About.route) {
                 AboutScreen()
             }
+
+            // --- TAMBAHKAN COMPOSABLE BARU DI BAWAH INI ---
+            composable(
+                route = "anime_detail/{animeId}", // Rute dengan parameter
+                arguments = listOf(navArgument("animeId") { type = NavType.IntType })
+            ) { backStackEntry ->
+                val animeId = backStackEntry.arguments?.getInt("animeId")
+                // Pastikan animeId tidak null sebelum memanggil screen
+                requireNotNull(animeId) { "Parameter animeId tidak ditemukan!" }
+                AnimeDetailScreen(animeId = animeId)
+            }
+
         }
     }
 }

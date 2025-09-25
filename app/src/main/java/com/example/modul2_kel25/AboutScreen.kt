@@ -47,6 +47,7 @@ fun AboutScreen() {
                     TextAlign.Center)
                 Spacer(modifier = Modifier.height(10.dp))
             }
+
         }
     }
 }

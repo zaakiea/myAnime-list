@@ -1,6 +1,7 @@
 package com.example.modul2_kel25
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable // <- TAMBAHKAN IMPORT INI
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -11,39 +12,40 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController // <- TAMBAHKAN IMPORT INI
 import coil.compose.rememberAsyncImagePainter
+
+// Tambahkan parameter NavController
 @Composable
-fun AnimeListScreen(viewModel: AnimeViewModel = viewModel()) {
+fun AnimeListScreen(navController: NavController, viewModel: AnimeViewModel = viewModel()) {
     val animeList by viewModel.animeList.collectAsState()
     LaunchedEffect(Unit) {
         viewModel.fetchTopAnime()
     }
-    LazyColumn(modifier = Modifier.fillMaxSize().padding(8.dp))
-    {
+    LazyColumn(modifier = Modifier.fillMaxSize().padding(8.dp)) {
         items(animeList) { anime ->
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(8.dp)
+                    // Tambahkan modifier clickable
+                    .clickable {
+                        // Navigasi ke halaman detail dengan mengirim ID anime
+                        navController.navigate("anime_detail/${anime.mal_id}")
+                    }
             ) {
                 Row(modifier = Modifier.padding(16.dp)) {
                     Image(
-                        painter =
-                            rememberAsyncImagePainter(anime.images.jpg.image_url),
+                        painter = rememberAsyncImagePainter(anime.images.jpg.image_url),
                         contentDescription = anime.title,
                         modifier = Modifier.size(80.dp)
-
                     )
-
                     Spacer(modifier = Modifier.width(8.dp))
-
                     Column {
                         Text(anime.title)
-
                         Text("Type: ${anime.type ?: "-"}")
                         Text("Episodes: ${anime.episodes ?: 0}")
                         Text("Score: ${anime.score ?: "N/A"}")
-
                     }
                 }
             }
