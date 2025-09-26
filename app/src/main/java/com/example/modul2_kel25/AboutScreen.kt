@@ -29,40 +29,40 @@ fun AboutScreen() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text("Our Team", style = MaterialTheme.typography.headlineLarge)
-        Text("Kelompok 25 | Shift Pagi", style = MaterialTheme.typography.titleMedium)
+        Text("FOKUS NGODING", style = MaterialTheme.typography.headlineLarge)
+        Text("Kelompok 25 | Shift 4", style = MaterialTheme.typography.titleMedium)
         Spacer(modifier = Modifier.height(24.dp))
 
         MemberInfoCard(
-            name = "Za'im Milzam",
-            nim = "A11.2022.14359",
-            photoResId = R.drawable.dummy // Pastikan file zaim.png ada di res/drawable
+            name = "MUSTOFA AHMAD RUSLI",
+            nim = "21120123120034",
+            photoResId = R.drawable.mustofa
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         MemberInfoCard(
-            name = "Rifqi Ardiansyah",
-            nim = "A11.2022.14363",
-            photoResId = R.drawable.dummy// Pastikan file rifqi.png ada di res/drawable
+            name = "GYDA MARVA ADRIONO",
+            nim = "21120123140043",
+            photoResId = R.drawable.gyda//
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         // --- ANGGOTA BARU 1 ---
         MemberInfoCard(
-            name = "Nama Anggota 3",
-            nim = "A11.2022.XXXXX",
-            photoResId = R.drawable.dummy // Ganti dengan nama file foto Anda
+            name = "DZAKI EKA ATMAJA",
+            nim = "21120123130068",
+            photoResId = R.drawable.zaki // Ganti dengan nama file foto Anda
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         // --- ANGGOTA BARU 2 ---
         MemberInfoCard(
-            name = "Nama Anggota 4",
-            nim = "A11.2022.XXXXX",
-            photoResId = R.drawable.dummy // Ganti dengan nama file foto Anda
+            name = "RADHITO PRAMUDYA ADRIE",
+            nim = "21120123120004",
+            photoResId = R.drawable.dhito // Ganti dengan nama file foto Anda
         )
     }
 }
